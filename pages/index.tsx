@@ -14,7 +14,8 @@ export default function Home() {
       </Head>
       <main className="w-full flex flex-col justify-center items-center min-h-screen bg-neutral-300 dark:bg-neutral-800">
         <TopBar />
-        <div className="flex grow justify-center items-center px-8 py-4 w-full max-w-2xl">
+        <div className="flex flex-col grow justify-center items-center px-8 py-4 w-full max-w-2xl">
+          <h1 className="text-black dark:text-white text-2xl sm:text-3xl mb-16 text-center">Get facts from trustworthy sources.</h1>
           <SearchBar />
         </div>
         <BottomBar />
