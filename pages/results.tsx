@@ -50,7 +50,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext<Pars
         const results = [
             {
                 fact: `You are interested in ${text}.`,
-                sources: ["https://www.bbc.com/", "https://www.nytimes.com/"],
+                sources: ["https://www.bbc.com", "https://www.nytimes.com"],
                 scores: {
                     confidence: 93,
                     relevance: 88,
@@ -58,7 +58,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext<Pars
             },
             {
                 fact: `1 + 1 = 2.`,
-                sources: ["https://www.bbc.com/", "https://www.nytimes.com/"],
+                sources: ["https://www.wolframalpha.com"],
                 scores: {
                     confidence: 100,
                     relevance: 4,

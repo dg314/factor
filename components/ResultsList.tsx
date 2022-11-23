@@ -10,7 +10,7 @@ export default function ResultsList(props: ResultsListProps) {
     const { query, results } = props;
 
     return (
-        <div className="flex justify-center w-full min-h-full">
+        <div className="flex justify-center w-full min-h-full px-4">
             <div className="w-full max-w-lg">
                 <p className="text-base my-6 text-neutral-800 dark:text-neutral-300">{results.length} results for &quot;{query.text}&quot;</p>
                 {results.map((result, index) => (

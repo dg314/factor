@@ -10,17 +10,15 @@ type ResultPreviewProps = {
 export default function ResultPreview(props: ResultPreviewProps) {
     const { result } = props;
 
-    const percentage = 66;
-
     const links = result.sources.map((source, index) => (
         <span key={index}>
-            <u key={index}><a href={source}>{source}</a></u>
+            <u key={index}><a href={source} target="_blank" rel="noopener noreferrer">{source}</a></u>
             {index === result.sources.length - 1 ? "" : ", "}
         </span>
     ))
 
     return (
-        <div className="w-full text-black dark:text-white text-lg bg-black/20 p-4 rounded-xl">
+        <div className="w-full text-black dark:text-white text-lg bg-white/40 dark:bg-black/20 p-4 rounded-xl">
             {result.fact}
             <div className="flex justify-center items-center gap-6 my-3">
                 <ToolTip tooltip="Confidence">
