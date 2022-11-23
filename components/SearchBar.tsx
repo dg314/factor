@@ -1,31 +1,57 @@
-import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from 'next/router'
+import React, { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { CgArrowRight } from "react-icons/cg"
+import { SearchQuery } from "../types/search";
 
-export default function SearchBar() {
-  const [value, setValue] = useState("");
+type SearchBarProps = {
+  initialText?: string;
+  big: boolean;
+}
+
+export default function SearchBar(props: SearchBarProps) {
+  const { initialText, big } = props;
+
+  const [text, setText] = useState<string>(initialText ?? "");
+
+  const router = useRouter();
+
+  const searchQuery: SearchQuery = {
+    text
+  };
+
+  const resultsPath = {
+    pathname: "/results",
+    query: searchQuery
+  };
+
+  const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key == "Enter") {
+      router.push(resultsPath);
+    }
+  }
 
   return (
-    <div className="w-full flex flex-col gap-6 justify-center items-center">
-      <div className="relative flex w-full">
-        <input 
-          value={value}
-          onChange={e => setValue(e.target.value)}
-          placeholder="Research anything..." 
-          className="w-full pl-12 pr-[4.5rem] py-3 bg-neutral-100 border-black outline-none rounded-full placeholder-neutral-500 text-lg"
-        />
-        <div className="absolute flex items-center top-0 left-4 h-full text-black text-xl pointer-events-none">
-          <AiOutlineSearch className="text-black" />
-        </div>
-        {value && <div className="absolute flex items-center top-0 right-0 p-2 h-full text-black text-3xl">
-          <button className="bg-blue-600 hover:bg-blue-700 rounded-full h-full px-4">
-            <CgArrowRight className="text-white" />
-          </button>
-        </div>}
+    <div className="relative flex w-full">
+      <input 
+        value={text}
+        onChange={e => setText(e.target.value)}
+        onKeyDown={handleInputKeyDown}
+        placeholder="Research anything..." 
+        className={`w-full bg-neutral-100 border-black outline-none rounded-full placeholder-neutral-500 text-black ${big ? "pl-12 pr-[4.5rem] py-3 text-lg" : "pl-9 pr-[4rem] py-2 text-base"}`}
+      />
+      <div className={`absolute flex items-center top-0 h-full text-black pointer-events-none ${big ? "left-4 text-xl" : "left-3 text-lg"}`}>
+        <AiOutlineSearch className="text-black" />
       </div>
-      {/*<button disabled={!value} className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-600 text-white text-sm px-6 py-2 rounded-full focus:outline-none disabled:opacity-50">
-        Get Facts
-      </button>*/}
+      {text && text !== initialText && <div className={`absolute flex items-center top-0 right-0 h-full text-black ${big ? "p-2 text-3xl" : "p-[0.35rem] text-2xl"}`}>
+        <Link
+          href={resultsPath}
+          className={`flex justify-center items-center bg-emerald-500 hover:bg-emerald-600 rounded-full h-full ${big ? "px-4" : "px-3"}`}
+        >
+          <CgArrowRight className="text-white" />
+        </Link>
+      </div>}
     </div>
   )
 }
