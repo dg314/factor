@@ -1,6 +1,7 @@
 import { GetServerSidePropsContext, PreviewData } from 'next'
 import { ParsedUrlQuery } from 'querystring'
 import Page from '../components/Page'
+import ResultsList from '../components/ResultsList'
 import SearchBar from '../components/SearchBar'
 import { SearchQuery, SearchResult } from '../types/search'
 
@@ -20,9 +21,12 @@ export default function Results(props: ResultsProps) {
 
     return (
         <Page
+            childrenCentered={false}
             topCenterContent={topCenterContent}
         >
-            {results.map((result, index) => <div key={index}>{result.fact}</div>)}
+            <ResultsList query={query} results={results} />
+
+            {/*results.map((result, index) => <div key={index}>{result.fact}</div>)*/}
         </Page>
     )
 }

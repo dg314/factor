@@ -5,11 +5,12 @@ import TopBar from "./TopBar";
 
 type PageProps = {
     children: ReactNode;
+    childrenCentered: boolean;
     topCenterContent?: ReactNode;
 }
 
 export default function Page(props: PageProps) {
-    const { children, topCenterContent } = props;
+    const { children, childrenCentered, topCenterContent } = props;
     
     return (
         <div>
@@ -18,7 +19,7 @@ export default function Page(props: PageProps) {
                 <TopBar>
                     {topCenterContent}
                 </TopBar>
-                <main className="flex justify-center items-center grow">
+                <main className={`grow w-full max-w-2xl ${childrenCentered && "flex flex-col justify-center items-center"}`}>
                     {children}
                 </main>
                 <BottomBar />

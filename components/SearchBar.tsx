@@ -33,7 +33,7 @@ export default function SearchBar(props: SearchBarProps) {
   }
 
   return (
-    <div className="relative flex w-full">
+    <div className="relative flex w-full max-w-2xl">
       <input 
         value={text}
         onChange={e => setText(e.target.value)}

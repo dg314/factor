@@ -10,7 +10,7 @@ export default function TopBar(props: TopBarProps) {
   const { children } = props;
 
   return (
-    <div className="relative w-full flex items-center px-4 text-black dark:text-white h-[4.5rem]">
+    <header className="sticky top-0 w-full flex items-center px-4 text-black dark:text-white h-[4.5rem] bg-neutral-300 dark:bg-neutral-800">
       <Link href="/" className="flex gap-4 items-center w-16 sm:w-32 shrink-0">
         <Image src="/factor-logo.png" alt="Factor logo" width="40" height="40" />
         <h1 className="text-2xl hidden sm:inline-block">Factor</h1>
@@ -19,6 +19,6 @@ export default function TopBar(props: TopBarProps) {
         {children}
       </div>
       <div className="w-16 sm:w-32 shrink-0" />
-    </div>
+    </header>
   )
 }
